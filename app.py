@@ -63,5 +63,5 @@ if __name__ == "__main__":
         workers=int(config[ENV]["workers"]),
         reload=False,
         ssl_keyfile=config[ENV]["ssl_keyfile"],
-        ssl_certfile=config[ENV]["ssl_certfile"],
+        ssl_certfile=config[ENV]["ssl_certfile"],   
     )
