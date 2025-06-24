@@ -181,7 +181,7 @@ def set_experiment_dir(output_directory: str, cfg: TrainCfg) -> tuple[str, int]:
 
 
     OmegaConf.save(
-        config=OmegaConf.create(cfg.model_dump(mode="json"))
+        config=OmegaConf.create(cfg.model_dump(mode="json")),
         f=os.path.join(run_dir, "config.yaml")
     )
 
@@ -525,6 +525,17 @@ def train_deep_head(
         train_dataloader=datasets.train_dataloader,
         val_dataloader=datasets.val_dataloader,
         test_dataloader=datasets.test_dataloader,
+        learning_rate=1e-3,
+    )
+
+    lightning_model = ClassificationTraining(
+        embeddings_model=cfg.model_class,
+        embeddings_model_checkpoint=cfg.pretrained_model_dir,
+        cls_head=DeepHead,
+        loss_fn=cfg.loss_fn,
+        train_dataloader=dataloaders.train_dataloader,
+        val_dataloader=dataloaders.val_dataloader,
+        test_dataloader=dataloaders.test_dataloader,
         learning_rate=1e-3,
     )
 

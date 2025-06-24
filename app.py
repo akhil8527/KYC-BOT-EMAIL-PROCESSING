@@ -33,7 +33,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    lifespan=lifespan,
+    lifespan=lifespan,  
     title="KYC-BOT-EMAIL-PROCESSING",
     description="Classify and extract entities from emails",
     summary="",
